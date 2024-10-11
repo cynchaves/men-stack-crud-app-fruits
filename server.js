@@ -18,61 +18,23 @@ app.use(methodOverride('_method'));
 app.use(morgan('dev'));
 
 const Fruit = require('./models/fruit.js');
+const fruitsCtrl = require("./controllers/fruits");
 
-app.get('/', (req, res) => {
-    res.render('index.ejs');
-});
+app.get('/', fruitsCtrl.home);
 
-app.get('/fruits', async (req, res) => {
-  const allFruits = await Fruit.find();
-  res.render('fruits/index.ejs', {
-    fruits: allFruits,
-  });
-});
+app.get('/fruits', fruitsCtrl.index);
 
-app.get('/fruits/new', (req, res) => {
-    res.render('fruits/new.ejs');
-});
+app.get('/fruits/new', fruitsCtrl.addNewForm);
 
-app.post('/fruits', async (req, res) => {
-  if (req.body.isReadyToEat === 'on') {
-      req.body.isReadyToEat = true;
-    } else {
-      req.body.isReadyToEat = false;
-    }
-  await Fruit.create(req.body);
-  res.redirect('/fruits');
-});
+app.post('/fruits', fruitsCtrl.create);
 
-app.get('/fruits/:fruitID', async (req, res) => {
-  const foundFruit = await Fruit.findById(req.params.fruitId);
-  res.render('fruits/show.ejs', {
-    fruit: foundFruit,
-  });
-});
+app.get('/fruits/:fruitID', fruitsCtrl.show);
 
-app.delete('/fruits/:fruitId', async (req, res) => {
-  await Fruit.findByIdAndDelete(req.params.fruitId);
-  res.redirect('/fruits');
-});
+app.delete('/fruits/:fruitId', fruitsCtrl.deleteOne);
 
-app.get('/fruits/:fruitId/edit', async (req, res) => {
-  const foundFruit = await Fruit.findById(req.params.fruitId);
-  //console.log(foundFruit);
-  res.render('fruits/edit.ejs', {
-    fruit: foundFruit,
-  });
-});
+app.get('/fruits/:fruitId/edit', fruitsCtrl.editForm);
 
-app.put('/fruits/:fruitId', async (req, res) => {
-  if (req.body.isReadyToEat === "on") {
-    req.body.isReadyToEat = true;
-  } else {
-    req.body.isReadyToEat = false;
-  }
-  await Fruit.findByIdAndUpdate(req.params.fruitId, req.body);
-  res.redirect('/fruits');
-});
+app.put('/fruits/:fruitId', fruitsCtrl.update);
 
 app.listen(3000, () => {
   console.log('Listening on port 3000');
