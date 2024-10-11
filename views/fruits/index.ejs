@@ -6,13 +6,18 @@
     <title>All Fruits</title>
   </head>
   <body>
-    <a href="/fruits/home">Home</a>
+    <a href="/">Home</a>
     <a href="/fruits/new"> Add a New Fruit</a>
     <h1>All Fruits</h1>
     <ul>
-        <% fruits.forEach(fruit => { %>
-            <li><%= fruit.name %></li>
-        <% }); %>
+      <% fruits.forEach(fruit => { %>
+        <li>
+          <a href="/fruits/<%= fruit._id %>"> <%= fruit.name %> </a>
+        </li>
+        <form action="/fruits/<%=fruit._id%>?_method=DELETE" method="POST">
+          <button type="submit">Delete <%= fruit.name %></button>
+        </form>
+    <% }); %>
     </ul>
   </body>
 </html>
