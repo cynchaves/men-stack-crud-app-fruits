@@ -1,5 +1,5 @@
-const dotenv = require('dotenv'); // require package
-dotenv.config(); // Loads the environment variables from .env file
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
@@ -13,7 +13,7 @@ mongoose.connection.on('connected', () => {
 });
 
   //------------------Middleware--------------------------
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
 
@@ -28,7 +28,7 @@ app.get('/fruits/new', fruitsCtrl.addNewForm);
 
 app.post('/fruits', fruitsCtrl.create);
 
-app.get('/fruits/:fruitID', fruitsCtrl.show);
+app.get('/fruits/:fruitId', fruitsCtrl.show);
 
 app.delete('/fruits/:fruitId', fruitsCtrl.deleteOne);
 

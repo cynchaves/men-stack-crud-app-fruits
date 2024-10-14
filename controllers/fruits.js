@@ -6,7 +6,7 @@ const home = ((req, res) => {
 
 const index = async (req, res) => {
   const foundFruits = await Fruit.find();
-  res.render('fruits/index.ejs', { fruits: foundFruits });
+  res.render('fruits/index.ejs', {fruits: foundFruits});
 };
 
 const addNewForm = ((req, res) => {
@@ -25,7 +25,8 @@ const create = async (req, res) => {
 
 const show = async (req, res) => {
     const foundFruit = await Fruit.findById(req.params.fruitId);
-    res.render('fruits/show.ejs', {fruits: foundFruit,});
+    console.log(foundFruit);
+    res.render('fruits/show.ejs', {fruit: foundFruit});
 };
 
 const deleteOne = async (req, res) => {
@@ -35,9 +36,7 @@ const deleteOne = async (req, res) => {
 
 const editForm = async (req, res) => {
     const foundFruit = await Fruit.findById(req.params.fruitId);
-    res.render('fruits/edit.ejs', {
-      fruit: foundFruit,
-    });
+    res.render('fruits/edit.ejs', {fruit: foundFruit});
 };
 
 const update = async (req, res) => {
