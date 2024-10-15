@@ -33,7 +33,7 @@ const deleteOne = async (req, res) => {
     res.redirect('/fruits');
 };
 
-const editForm = async (req, res) => {
+const updateForm = async (req, res) => {
     const foundFruit = await Fruit.findById(req.params.fruitId);
     res.render('fruits/edit.ejs', {fruit: foundFruit});
 };
@@ -55,6 +55,6 @@ module.exports = {
   create,
   show,
   deleteOne,
-  editForm,
+  updateForm,
   update,
 };

@@ -32,7 +32,7 @@ app.get('/fruits/:fruitId', fruitsCtrl.show);
 
 app.delete('/fruits/:fruitId', fruitsCtrl.deleteOne);
 
-app.get('/fruits/:fruitId/edit', fruitsCtrl.editForm);
+app.get('/fruits/:fruitId/edit', fruitsCtrl.updateForm);
 
 app.put('/fruits/:fruitId', fruitsCtrl.update);
 
