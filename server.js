@@ -26,15 +26,15 @@ app.get('/fruits', fruitsCtrl.index);
 
 app.get('/fruits/new', fruitsCtrl.addNewForm);
 
-app.post('/fruits', fruitsCtrl.create);
-
 app.get('/fruits/:fruitId', fruitsCtrl.show);
-
-app.delete('/fruits/:fruitId', fruitsCtrl.deleteOne);
 
 app.get('/fruits/:fruitId/edit', fruitsCtrl.updateForm);
 
+app.post('/fruits', fruitsCtrl.create);
+
 app.put('/fruits/:fruitId', fruitsCtrl.update);
+
+app.delete('/fruits/:fruitId', fruitsCtrl.deleteOne);
 
 app.listen(3000, () => {
   console.log('Listening on port 3000');
