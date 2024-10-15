@@ -25,7 +25,6 @@ const create = async (req, res) => {
 
 const show = async (req, res) => {
     const foundFruit = await Fruit.findById(req.params.fruitId);
-    console.log(foundFruit);
     res.render('fruits/show.ejs', {fruit: foundFruit});
 };
 
